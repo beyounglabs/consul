@@ -1,5 +1,9 @@
 # Configuring Environment
 
+## About
+
+The purpose of this project is provide a setup to run consul in local enviroment.
+
 ## Install
 
 Disable local DNS:
@@ -34,10 +38,9 @@ nameserver 127.0.0.1
 
 You should be able to see Consul UI at http://consul.service.consul:8500
 
-Now, whenever a container start running you should be able to see it on Consul UI and access it using its name followed by service.consul. You can
-add some tags for hint Consul for configs. Brain's docker compose file can be used by reference:
+Now, whenever a container start running you should be able to see it on Consul UI and access it using its name followed by service.consul. You can add some tags for hint Consul for configs.
 
-https://bitbucket.org/beautybrands/brain/src/8b2a0dda91cfe08f4cb674e42f4d76f9579aae58/docker-compose.yml?fileviewer=file-view-default
+The docker-compose.example.yml can be used as reference.
 
 ## Backing local DNS:
 

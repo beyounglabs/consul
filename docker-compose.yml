@@ -21,6 +21,8 @@ services:
       - "8600:8600/udp"
     command: "-bootstrap"
     restart: always
+    volumes:
+      - ./consul/server.json:/config/server.json
     environment:
       SERVICE_8300_IGNORE: 'yes'
       SERVICE_8301_IGNORE: 'yes'
@@ -49,8 +51,8 @@ services:
     image: jpillora/dnsmasq
     restart: always
     volumes:
-      - ./dnsmasq.conf:/etc/dnsmasq.conf.template
-      - ./entrypoint.sh:/etc/entrypoint.sh
+      - ./dnsmasq/dnsmasq.conf:/etc/dnsmasq.conf.template
+      - ./dnsmasq/entrypoint.sh:/etc/entrypoint.sh
     entrypoint: [ "/etc/entrypoint.sh" ]
     ports:
       - "5380:8080"
