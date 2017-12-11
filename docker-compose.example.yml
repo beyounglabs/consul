@@ -9,7 +9,8 @@ services:
       - ./docker/data/redis:/data
     environment:
       SERVICE_NAME: 'example-redis'
-      
+    networks:
+      - consul
 networks:
   consul:
     external: true
