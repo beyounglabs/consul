@@ -1,22 +1,26 @@
 version: '3.2'
 services:
   registrator:
+    container_name: registrator
     image: gliderlabs/registrator
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock"
     command: "-internal consul://consul:8500"
+    restart: always
     depends_on: 
       - consul
     networks:
       - consul
 
   consul:
+    container_name: consul
     image: gliderlabs/consul-server
     ports:
       - "8400:8400"
       - "8500:8500"
       - "8600:8600/udp"
     command: "-bootstrap"
+    restart: always
     environment:
       SERVICE_8300_IGNORE: 'yes'
       SERVICE_8301_IGNORE: 'yes'
@@ -32,8 +36,21 @@ services:
     image: redis:4.0
     environment:
       SERVICE_6379_NAME: 'redis'
+    restart: always
     volumes:
       - ./data/redis:/data
+    depends_on:
+      - consul
+    networks:
+      - consul  
+  
+  dnsmasq:
+    container_name: dnsmasq
+    build: docker/dnsmasq
+    restart: always
+    ports:
+      - "5380:8080"
+      - "53:53/udp"
     depends_on:
       - consul
     networks:
