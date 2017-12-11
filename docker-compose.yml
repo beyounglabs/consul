@@ -46,8 +46,12 @@ services:
   
   dnsmasq:
     container_name: dnsmasq
-    build: docker/dnsmasq
+    image: jpillora/dnsmasq
     restart: always
+    volumes:
+      - ./dnsmasq.conf:/etc/dnsmasq.conf.template
+      - ./entrypoint.sh:/etc/entrypoint.sh
+    entrypoint: [ "/etc/entrypoint.sh" ]
     ports:
       - "5380:8080"
       - "53:53/udp"
