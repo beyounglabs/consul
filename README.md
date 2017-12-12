@@ -6,9 +6,9 @@ The purpose of this project is provide a setup to run consul in local enviroment
 
 This repository assumes you have docker, docker-compose and git installed.
 
-**IMPORTANT:** because you setup a DNS server on the dnsmasq docker, if this container is not running, you will no longer hava internet access.
+**IMPORTANT:** because you will setup a DNS server on the dnsmasq container, if this container is not running, you will no longer have internet access.
 
-## Install
+## Installing
 
 Disable local DNS:
 
@@ -29,7 +29,7 @@ Your DOCKER_OPTS option should be something like:
 DOCKER_OPTS="--dns 172.17.0.1 --dns 8.8.8.8 --dns-search service.consul"
 ```
 
-Restart the Docker deamon:
+Restart the Docker daemon:
 
 ```
 sudo systemctl restart docker
