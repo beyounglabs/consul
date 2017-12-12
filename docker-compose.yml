@@ -1,17 +1,5 @@
 version: '3.2'
 services:
-  registrator:
-    container_name: registrator
-    image: gliderlabs/registrator
-    volumes:
-      - "/var/run/docker.sock:/tmp/docker.sock"
-    command: "-internal consul://consul:8500"
-    restart: always
-    depends_on: 
-      - consul
-    networks:
-      - consul
-
   consul:
     container_name: consul
     image: gliderlabs/consul-server
@@ -30,6 +18,18 @@ services:
       SERVICE_8400_IGNORE: 'yes'
       SERVICE_8600_IGNORE: 'yes'
       SERVICE_8500_NAME: 'consul'
+    networks:
+      - consul
+
+  registrator:
+    container_name: registrator
+    image: gliderlabs/registrator
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock"
+    command: "-internal consul://consul:8500"
+    restart: always
+    depends_on: 
+      - consul
     networks:
       - consul
 
@@ -59,6 +59,7 @@ services:
       - "53:53/udp"
     depends_on:
       - consul
+      - nginx
     networks:
       - consul  
 
