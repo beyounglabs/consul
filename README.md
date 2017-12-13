@@ -74,10 +74,10 @@ can be used as reference:
 example-redis.service.consul
 ```
 
-If the container is a http based container, like NGINX, you can use the .app final in port 80 or 3000:
+If the container is a http based container, like NGINX, you can use the .develop final in port 80 or 3000:
 
 ```
-my-node.app:3000
+my-node.develop:3000
 ```
 
 This will redirect to:
@@ -89,7 +89,7 @@ my-node.service.consul:3000
 If you need use a subdomain, you can use:
 
 ```
-mysubdomain.my-node.app:3000
+mysubdomain.my-node.develop:3000
 ```
 
 This also will redirect to:
