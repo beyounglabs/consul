@@ -6,7 +6,6 @@ The purpose of this project is to provide a setup to run consul in a local envir
 
 This repository assumes you have `docker`, `docker-compose` and `git` installed.
 
-**IMPORTANT:** because you will setup a DNS server on the dnsmasq container, if this container is not running, you will no longer have internet access.
 
 ## Installing
 
@@ -58,6 +57,8 @@ Change `/etc/resolv.conf`:
 
 ```
 nameserver 127.0.0.1
+nameserver 8.8.8.8
+nameserver 8.8.4.4
 ```
 
 On Fedora, you need to change the DNS in the Network Manager GUI to `127.0.0.1`.
