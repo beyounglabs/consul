@@ -61,7 +61,7 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4
 ```
 
-On Fedora, you need to change the DNS in the Network Manager GUI to `127.0.0.1`.
+On Fedora, you need to change the DNS in the Network Manager GUI to `127.0.0.1`, `8.8.8.8` and `8.8.4.4`.
 
 ## Using
 
