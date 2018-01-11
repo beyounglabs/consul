@@ -22,7 +22,7 @@ services:
       - consul
 
   registrator:
-    container_name: registrator
+    container_name: consul_registrator
     image: gliderlabs/registrator
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock"
@@ -34,7 +34,7 @@ services:
       - consul
 
   redis:
-    container_name: redis
+    container_name: consul_redis
     image: redis:4.0
     environment:
       SERVICE_6379_NAME: 'redis'
@@ -47,7 +47,7 @@ services:
       - consul  
   
   dnsmasq:
-    container_name: dnsmasq
+    container_name: consul_dnsmasq
     image: jpillora/dnsmasq
     restart: always
     volumes:
