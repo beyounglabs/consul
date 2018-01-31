@@ -55,3 +55,8 @@ Add 127.0.0.1 to DNS in Network Manager
 ## Debugging
 To see a list of useful commands: 
 https://github.com/AlmirKadric-Published/docker-tuntap-osx/issues/7#issuecomment-350550862
+
+To list routes:
+```
+netstat -rn
+```
