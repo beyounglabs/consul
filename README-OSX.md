@@ -89,5 +89,3 @@ netstat -rn
 ```
 screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
 ```
-
-37da2fc4c5ee8d6e847561997d4fa852
