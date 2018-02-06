@@ -2,7 +2,10 @@
 
 ## Installing
 
+It requires Docker 17.12+.
+
 ### Create the consul network:
+
 ```
 docker network create consul
 ```
@@ -41,22 +44,32 @@ This command MUST run every Docker restart:
 Discover the IP of consul container:
 
 ```
-docker inspect consul | python -c "import sys, json; print(json.load(sys.stdin)[0]['NetworkSettings']['Networks']['consul']['IPAddress'])"
+docker inspect consul | python -c "import sys, json; print(json.load(sys.stdin)[0]['NetworkSettings']['Networks']['consul']['IPAddress'][0:9]) + '0'"
 ```
 
-In my case is: 172.18.0.3, so run this command to add the route:
+In my case is: 172.18.0.0, so run this command to add the route:
+
 ```
 sudo route -n add -net 172.18.0.0 -netmask 255.255.0.0 10.0.75.2
 ```
 
 ### Add the local DNS to MAC
-Add 127.0.0.1 to DNS in Network Manager
+
+Set 127.0.0.1 to DNS in Network Manager
 
 ## Debugging
-To see a list of useful commands: 
+
+To see a list of useful commands:
 https://github.com/AlmirKadric-Published/docker-tuntap-osx/issues/7#issuecomment-350550862
 
-To list routes:
+### To list routes:
+
 ```
 netstat -rn
+```
+
+### Enter HiperKit:
+
+```
+screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
 ```
