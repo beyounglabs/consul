@@ -31,6 +31,20 @@ git clone git@github.com:AlmirKadric-Published/docker-tuntap-osx.git ~/docker-tu
 ~/docker-tuntap-osx/sbin/docker_tap_install.sh
 ```
 
+If you see this error while installing TunTap:
+```
+Error: Command failed to execute!
+
+==> Failed command:
+/usr/bin/sudo -E -- /usr/sbin/installer -pkg /usr/local/Caskroom/tuntap/20150118/tuntap_20150118.pkg -target /
+
+==> Standard Output of failed command:
+installer: Package name is TunTap Installer package
+installer: Installing at base path /
+installer: The install failed (The Installer encountered an error that caused the installation to fail.
+```
+you'll need to allow the installation on `System Preferences > Security > General`.
+
 ### Turn up the tuntap interface
 
 This command MUST run every Docker restart:
@@ -67,9 +81,12 @@ https://github.com/AlmirKadric-Published/docker-tuntap-osx/issues/7#issuecomment
 ```
 netstat -rn
 ```
+<<<<<<< HEAD
 
 ### Enter HiperKit:
 
 ```
 screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
 ```
+=======
+>>>>>>> 5c2d90d137da2fc4c5ee8d6e847561997d4fa852
