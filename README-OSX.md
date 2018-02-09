@@ -44,7 +44,7 @@ git clone git@github.com:beautybrands/consul.git && cd consul
 This command MUST run every Docker restart:
 
 ```
-./start_mac.sh
+./start_osx.sh
 ```
 
 ### Add the local DNS to MAC

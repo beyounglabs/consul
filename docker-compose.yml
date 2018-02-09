@@ -28,7 +28,7 @@ services:
       - "/var/run/docker.sock:/tmp/docker.sock"
     command: "-internal consul://consul:8500"
     restart: always
-    depends_on: 
+    depends_on:
       - consul
     networks:
       - consul
@@ -44,8 +44,8 @@ services:
     depends_on:
       - consul
     networks:
-      - consul  
-  
+      - consul
+
   dnsmasq:
     container_name: consul_dnsmasq
     image: jpillora/dnsmasq
@@ -56,12 +56,11 @@ services:
     entrypoint: [ "/etc/entrypoint.sh" ]
     ports:
       - "5380:8080"
-      - "53:53/udp"
     depends_on:
       - consul
       - nginx
     networks:
-      - consul  
+      - consul
 
   nginx:
     hostname: consul_nginx
@@ -75,7 +74,7 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
       - consul
-    
+
 networks:
   consul:
     external: true
