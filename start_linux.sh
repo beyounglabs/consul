@@ -7,6 +7,9 @@ if [ ! "$EUID" -ne 0 ]
   exit
 fi
 
+BASEDIR=$(dirname "$0")
+cd $BASEDIR
+
 # Create Network Consul
 [[ $(docker network ls | grep consul) ]] || docker network create consul
 docker-compose up -d
