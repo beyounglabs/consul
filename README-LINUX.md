@@ -41,5 +41,5 @@ git clone git@github.com:beautybrands/consul.git
 Enter on the folder and run:
 
 ```
-./start_linux.sh
+./start.sh
 ```

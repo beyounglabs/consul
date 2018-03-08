@@ -8,18 +8,20 @@ fi
 # Create Network Consul
 [[ $(docker network ls | grep consul) ]] || docker network create consul
 
+wget -q --spider http://google.com
+HAS_INTERNET=false 
+if [ $? -eq 0 ]; then
+    HAS_INTERNET=true
+fi
 
 # Clone Tuntap
+echo "Cloning tuntap"
 [[ -d ./docker-tuntap-osx ]] || git clone git@github.com:AlmirKadric-Published/docker-tuntap-osx.git ./docker-tuntap-osx
 
 # Update Tun Tap
 cd ./docker-tuntap-osx
-git pull origin master
+[[ $HAS_INTERNET ]] && git pull origin master
 cd ..
-
-
-# Up Interface
-# chown $USER /dev/tap1
 
 # brew tap caskroom/cask
 # brew cask reinstall tuntap
@@ -71,7 +73,7 @@ done
 ./docker-tuntap-osx/sbin/docker_tap_up.sh
 
 docker-compose down
-docker-compose up -d -f docker-compose.yml -f docker-compose-osx.yml
+docker-compose  -f docker-compose.yml -f docker-compose-osx.yml up -d
 
 CONSUL_NETWORK_ID=`docker network ls | grep consul | head -1 | awk '{print $1}'`
 CONSUL_NETWORK_IP=`docker inspect $CONSUL_NETWORK_ID | python -c "import sys, json; print(json.load(sys.stdin)[0]['IPAM']['Config'][0]['Subnet'][0:10])"`
