@@ -67,3 +67,9 @@ netstat -rn
 ```
 screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
 ```
+
+### Getingt  dnsmasq.conf
+
+```
+docker-compose exec dnsmasq cat /etc/dnsmasq.conf
+```

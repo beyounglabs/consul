@@ -15,7 +15,7 @@ if [ $? -eq 0 ]; then
 fi
 
 # Clone Tuntap
-echo "Cloning tuntap"
+[[ -d ./docker-tuntap-osx ]] || echo "Cloning tuntap"
 [[ -d ./docker-tuntap-osx ]] || git clone git@github.com:AlmirKadric-Published/docker-tuntap-osx.git ./docker-tuntap-osx
 
 # Update Tun Tap
@@ -79,5 +79,6 @@ CONSUL_NETWORK_ID=`docker network ls | grep consul | head -1 | awk '{print $1}'`
 CONSUL_NETWORK_IP=`docker inspect $CONSUL_NETWORK_ID | python -c "import sys, json; print(json.load(sys.stdin)[0]['IPAM']['Config'][0]['Subnet'][0:10])"`
 
 # Add Route
+echo "Adding Consul IP $CONSUL_NETWORK_IP"
 sudo route -n delete -net $CONSUL_NETWORK_IP
 sudo route -n add -net $CONSUL_NETWORK_IP -netmask 255.255.0.0 10.0.75.2
