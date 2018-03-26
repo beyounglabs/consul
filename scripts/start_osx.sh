@@ -26,6 +26,9 @@ cd ..
 # brew tap caskroom/cask
 # brew cask reinstall tuntap
 
+./docker-tuntap-osx/sbin/docker_tap_install.sh
+
+[[ $(ifconfig | grep tap1) ]] || echo "Changing permission /dev/tap1 to $USER"
 [[ $(ifconfig | grep tap1) ]] || sudo chown $USER /dev/tap1
 
 POSSIBLE_PROCESS_NAMES=$(echo '

@@ -33,12 +33,6 @@ you'll need to allow the installation on `System Preferences > Security > Genera
 git clone git@github.com:beautybrands/consul.git && cd consul
 ```
 
-### Installing interface
-
-```
-./docker-tuntap-osx/sbin/docker_tap_install.sh
-```
-
 ### Turn up the tuntap interface
 
 This command MUST run every Docker restart:
@@ -68,7 +62,7 @@ netstat -rn
 screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
 ```
 
-### Getingt  dnsmasq.conf
+### Getingt dnsmasq.conf
 
 ```
 docker-compose exec dnsmasq cat /etc/dnsmasq.conf
