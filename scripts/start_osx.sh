@@ -85,3 +85,9 @@ CONSUL_NETWORK_IP=`docker inspect $CONSUL_NETWORK_ID | python -c "import sys, js
 echo "Adding Consul IP $CONSUL_NETWORK_IP"
 sudo route -n delete -net $CONSUL_NETWORK_IP
 sudo route -n add -net $CONSUL_NETWORK_IP -netmask 255.255.0.0 10.0.75.2
+
+
+echo "Flushing DNS"
+sudo killall -HUP mDNSResponder
+sudo killall mDNSResponderHelper
+sudo dscacheutil -flushcache
