@@ -88,6 +88,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_ROOT_HOST: '%' 
       SERVICE_NAME: 'consul-mysql'
+      TZ: 'America/Sao_Paulo'
     networks:
       - consul
 
