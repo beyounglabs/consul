@@ -89,6 +89,8 @@ services:
       MYSQL_ROOT_HOST: "%"
       SERVICE_NAME: "consul-mysql"
       TZ: "America/Sao_Paulo"
+      SERVICE_3306_NAME: "consul-mysql"
+      SERVICE_33060_IGNORE: "yes"
     networks:
       - consul
 
