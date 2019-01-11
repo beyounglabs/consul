@@ -31,3 +31,17 @@ If you need to use a subdomain, you can use http://mysubdomain.my-node.develop:3
 ```
 docker exec consul_dnsmasq cat /etc/dnsmasq.conf
 ```
+
+## Upgrading to Mysql 8.0
+
+Enter on the container:
+
+```
+docker exec -it consul_mysql bash
+```
+
+Run the upgrade command:
+
+```
+mysql_upgrade -u root -p
+```
