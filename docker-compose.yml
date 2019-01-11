@@ -1,4 +1,4 @@
-version: '3.2'
+version: "3.2"
 services:
   consul:
     container_name: consul
@@ -12,12 +12,12 @@ services:
     volumes:
       - ./consul/server.json:/config/server.json
     environment:
-      SERVICE_8300_IGNORE: 'yes'
-      SERVICE_8301_IGNORE: 'yes'
-      SERVICE_8302_IGNORE: 'yes'
-      SERVICE_8400_IGNORE: 'yes'
-      SERVICE_8600_IGNORE: 'yes'
-      SERVICE_8500_NAME: 'consul'
+      SERVICE_8300_IGNORE: "yes"
+      SERVICE_8301_IGNORE: "yes"
+      SERVICE_8302_IGNORE: "yes"
+      SERVICE_8400_IGNORE: "yes"
+      SERVICE_8600_IGNORE: "yes"
+      SERVICE_8500_NAME: "consul"
     networks:
       - consul
 
@@ -37,7 +37,7 @@ services:
     container_name: consul_redis
     image: redis:4.0
     environment:
-      SERVICE_6379_NAME: 'redis'
+      SERVICE_6379_NAME: "redis"
     restart: always
     volumes:
       - ./data/redis:/data:cached
@@ -53,7 +53,7 @@ services:
     volumes:
       - ./dnsmasq/dnsmasq.conf:/etc/dnsmasq.conf.template
       - ./dnsmasq/entrypoint.sh:/etc/entrypoint.sh
-    entrypoint: [ "/etc/entrypoint.sh" ]
+    entrypoint: ["/etc/entrypoint.sh"]
     ports:
       - "5380:8080"
     depends_on:
@@ -67,17 +67,17 @@ services:
     container_name: consul_nginx
     image: nginx:1.10.2
     environment:
-      SERVICE_443_IGNORE: 'yes'
-      SERVICE_80_NAME: 'consul-nginx'
+      SERVICE_443_IGNORE: "yes"
+      SERVICE_80_NAME: "consul-nginx"
     restart: always
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
       - consul
-      
+
   mysql:
     container_name: consul_mysql
-    image: mysql:5.7
+    image: mysql:8.0
     volumes:
       - ./data/mysql:/var/lib/mysql:cached
     command:
@@ -86,9 +86,9 @@ services:
       - --skip-character-set-client-handshake
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_ROOT_HOST: '%' 
-      SERVICE_NAME: 'consul-mysql'
-      TZ: 'America/Sao_Paulo'
+      MYSQL_ROOT_HOST: "%"
+      SERVICE_NAME: "consul-mysql"
+      TZ: "America/Sao_Paulo"
     networks:
       - consul
 
