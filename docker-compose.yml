@@ -65,13 +65,15 @@ services:
   nginx:
     hostname: consul_nginx
     container_name: consul_nginx
-    image: nginx:1.10.2
+    image: nginx:1.16.0
     environment:
       SERVICE_443_IGNORE: "yes"
       SERVICE_80_NAME: "consul-nginx"
     restart: always
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/entrypoint.sh:/etc/entrypoint.sh
+    entrypoint: ["/etc/entrypoint.sh"]
     networks:
       - consul
 
