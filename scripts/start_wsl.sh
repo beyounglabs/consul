@@ -10,10 +10,10 @@ fi
 BASEDIR=$(dirname "$0")
 cd $BASEDIR/../
 
-# Create Network Consul
-[[ $(docker network ls | grep consul) ]] || docker network create consul
+sudo ifconfig eth0 down && sudo ifconfig eth0 up
+sudo ifconfig docker0 down && sudo ifconfig docker0 up 
 
-docker-compose  -f docker-compose.yml -f docker-compose-wsl.yml up -d
+docker-compose -f docker-compose.yml -f docker-compose-wsl.yml up -d
 
 DNSMASQ_IP=`docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' consul_dnsmasq`
 
