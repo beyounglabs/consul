@@ -8,6 +8,9 @@ fi
 # Create Network Consul
 [[ $(docker network ls | grep consul) ]] || docker network create consul
 
+NETWORK_INTERFACE=`networksetup -listallhardwareports | grep "Hardware Port" | head -n1 | sed "s/Hardware Port: //g"`
+sudo networksetup -setdnsservers "$NETWORK_INTERFACE" 8.8.8.8
+
 wget -q --spider http://google.com
 HAS_INTERNET=false 
 if [ $? -eq 0 ]; then
@@ -81,11 +84,14 @@ docker-compose  -f docker-compose.yml -f docker-compose-osx.yml up -d
 CONSUL_NETWORK_ID=`docker network ls | grep consul | head -1 | awk '{print $1}'`
 CONSUL_NETWORK_IP=`docker inspect $CONSUL_NETWORK_ID | python -c "import sys, json; print(json.load(sys.stdin)[0]['IPAM']['Config'][0]['Subnet'][0:10])"`
 
+DNSMASQ_NETWORK_IP=`docker inspect consul_dnsmasq | python -c "import sys, json; print(json.load(sys.stdin)[0]['NetworkSettings']['Networks']['consul']['IPAddress'])"`
+
 # Add Route
 echo "Adding Consul IP $CONSUL_NETWORK_IP"
 sudo route -n delete -net $CONSUL_NETWORK_IP
 sudo route -n add -net $CONSUL_NETWORK_IP -netmask 255.255.0.0 10.0.75.2
 
+sudo networksetup -setdnsservers "$NETWORK_INTERFACE" $DNSMASQ_NETWORK_IP
 
 echo "Flushing DNS"
 sudo killall -HUP mDNSResponder
