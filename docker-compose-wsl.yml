@@ -3,3 +3,9 @@ services:
   dnsmasq:
     ports:
       - "53:53/udp"
+    environment:
+      WSL: "1"
+      ETH0_IP: $ETH0_IP
+  nginx:
+    ports:
+      - "80:80"

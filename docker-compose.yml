@@ -18,7 +18,8 @@ services:
       SERVICE_8400_IGNORE: "yes"
       SERVICE_8600_IGNORE: "yes"
       SERVICE_8500_NAME: "consul"
-    network_mode: bridge
+    networks:
+      - consul
 
   registrator:
     container_name: consul_registrator
@@ -29,7 +30,8 @@ services:
     restart: always
     depends_on:
       - consul
-    network_mode: bridge
+    networks:
+      - consul
 
   redis:
     container_name: consul_redis
@@ -41,7 +43,8 @@ services:
       - ./data/redis:/data:cached
     depends_on:
       - consul
-    network_mode: bridge
+    networks:
+      - consul
 
   dnsmasq:
     container_name: consul_dnsmasq
@@ -56,7 +59,8 @@ services:
     depends_on:
       - consul
       - nginx
-    network_mode: bridge
+    networks:
+      - consul
 
   nginx:
     hostname: consul_nginx
@@ -70,7 +74,8 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/entrypoint.sh:/etc/entrypoint.sh
     entrypoint: ["/etc/entrypoint.sh"]
-    network_mode: bridge
+    networks:
+      - consul
 
   mysql:
     container_name: consul_mysql
@@ -90,4 +95,9 @@ services:
       TZ: "America/Sao_Paulo"
       SERVICE_3306_NAME: "consul-mysql"
       SERVICE_33060_IGNORE: "yes"
-    network_mode: bridge
+    networks:
+      - consul
+
+networks:
+  consul:
+    external: true

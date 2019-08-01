@@ -10,8 +10,11 @@ fi
 BASEDIR=$(dirname "$0")
 cd $BASEDIR/../
 
-sudo ifconfig eth0 down && sudo ifconfig eth0 up
-sudo ifconfig docker0 down && sudo ifconfig docker0 up 
+# Create Network Consul
+[[ $(docker network ls | grep consul) ]] || docker network create consul
+
+ETH0_IP=`ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'`
+echo "ETH0_IP=${ETH0_IP}" > .env
 
 docker-compose -f docker-compose.yml -f docker-compose-wsl.yml up -d
 
@@ -25,3 +28,6 @@ nameserver 8.8.4.4
 " > ./resolv.conf
 
 sudo mv -f ./resolv.conf /etc/resolv.conf
+
+# sudo ifconfig eth0 down && sudo ifconfig eth0 up
+# sudo ifconfig docker0 down && sudo ifconfig docker0 up 

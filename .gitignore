@@ -2,3 +2,4 @@ data/
 .history/
 docker-tuntap-osx/
 resolv.conf
+.env
