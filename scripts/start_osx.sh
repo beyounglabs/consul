@@ -10,7 +10,7 @@ fi
 
 NETWORK_INTERFACES=`networksetup -listallhardwareports | grep "Hardware Port" | grep -v "Bluetooth" | grep -v "Thunderbolt"  | sed "s/Hardware Port: //g"`
 for NETWORK_INTERFACE in $NETWORK_INTERFACES; do
-  sudo networksetup -setdnsservers "$NETWORK_INTERFACE" 8.8.8.8
+  sudo networksetup -setdnsservers "$NETWORK_INTERFACE" 8.8.8.8 8.8.4.4
 done
 
 wget -q --spider http://google.com
@@ -94,7 +94,7 @@ sudo route -n delete -net $CONSUL_NETWORK_IP
 sudo route -n add -net $CONSUL_NETWORK_IP -netmask 255.255.0.0 10.0.75.2
 
 for NETWORK_INTERFACE in $NETWORK_INTERFACES; do
-  sudo networksetup -setdnsservers "$NETWORK_INTERFACE" $DNSMASQ_NETWORK_IP 8.8.8.8
+  sudo networksetup -setdnsservers "$NETWORK_INTERFACE" $DNSMASQ_NETWORK_IP 8.8.8.8 8.8.4.4
 done
 
 echo "Flushing DNS"
