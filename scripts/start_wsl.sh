@@ -31,7 +31,7 @@ sudo mv -f ./resolv.conf /etc/resolv.conf
 
 MAX_USER_WATCHES=524288
 sudo sed -ri 's/^(fs\.inotify\.max_user_watches\=)(.*)$/\1'"$MAX_USER_WATCHES"'/g' /etc/sysctl.conf
-sudo sysctl -p
+sudo sysctl -p >> /dev/null
 
 # sudo ifconfig eth0 down && sudo ifconfig eth0 up
 # sudo ifconfig docker0 down && sudo ifconfig docker0 up 
