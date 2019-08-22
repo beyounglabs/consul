@@ -81,7 +81,7 @@ services:
     container_name: consul_mysql
     image: mysql:8.0
     volumes:
-      - ./data/mysql:/var/lib/mysql:cached
+      - ./data/mysql:/var/lib/mysql:rw,delegated
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
@@ -95,6 +95,8 @@ services:
       TZ: "America/Sao_Paulo"
       SERVICE_3306_NAME: "consul-mysql"
       SERVICE_33060_IGNORE: "yes"
+    ports:
+      - "33060:3306"
     networks:
       - consul
 
