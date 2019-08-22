@@ -29,5 +29,7 @@ nameserver 8.8.4.4
 
 sudo mv -f ./resolv.conf /etc/resolv.conf
 
+sudo sysctl -p
+
 # sudo ifconfig eth0 down && sudo ifconfig eth0 up
 # sudo ifconfig docker0 down && sudo ifconfig docker0 up 
