@@ -3,3 +3,4 @@ data/
 docker-tuntap-osx/
 resolv.conf
 .env
+hosts
