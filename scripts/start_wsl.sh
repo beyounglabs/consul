@@ -36,7 +36,7 @@ sudo sysctl -p >> /dev/null
 # etc/hosts
 cp -f /mnt/c/Windows/System32/drivers/etc/hosts ./hosts
 HOSTS_TO_CHANGE=`cat ./hosts | grep -e .develop -e.service.consul`
-echo $HOSTS_TO_CHANGE | awk -v ip="$ETH0_IP" '{split($0, a, " "); system("sed -ri \"s/" a[1] "/" ip "/g\" ./hosts")}' 
+echo $HOSTS_TO_CHANGE | awk -v ip="$ETH0_IP" '{split($0, a, " "); sudo system("sed -ri \"s/" a[1] "/" ip "/g\" ./hosts")}' 
 sudo cp -f ./hosts /mnt/c/Users/$USER/Desktop/hosts 
 
 # sudo ifconfig eth0 down && sudo ifconfig eth0 up
