@@ -16,6 +16,7 @@ cd $BASEDIR/../
 ETH0_IP=`ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'`
 echo "ETH0_IP=${ETH0_IP}" > .env
 
+docker-compose down
 docker-compose -f docker-compose.yml -f docker-compose-wsl.yml up -d
 
 DNSMASQ_IP=`docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' consul_dnsmasq`
