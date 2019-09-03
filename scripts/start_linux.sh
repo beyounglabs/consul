@@ -15,7 +15,10 @@ chmod +x nginx/entrypoint.sh
 
 # Create Network Consul
 [[ $(docker network ls | grep consul) ]] || docker network create consul
-docker-compose up -d
+
+# IS OR NOT CLOUD
+uname -a | grep "\-gcp" && docker-compose -f docker-compose.yml -f docker-compose-linux-remote.yml up -d || docker-compose up -d
+
 
 DNSMASQ_IP=`docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' consul_dnsmasq`
 

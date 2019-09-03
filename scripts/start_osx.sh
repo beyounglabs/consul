@@ -81,7 +81,7 @@ done
 ./docker-tuntap-osx/sbin/docker_tap_up.sh
 
 docker-compose down
-docker-compose  -f docker-compose.yml -f docker-compose-osx.yml up -d
+docker-compose -f docker-compose.yml -f docker-compose-osx.yml up -d
 
 CONSUL_NETWORK_ID=`docker network ls | grep consul | head -1 | awk '{print $1}'`
 CONSUL_NETWORK_IP=`docker inspect $CONSUL_NETWORK_ID | python -c "import sys, json; print(json.load(sys.stdin)[0]['IPAM']['Config'][0]['Subnet'][0:10])"`
