@@ -8,7 +8,7 @@ if [ ! "$EUID" -ne 0 ]
 fi
 
 BASEDIR=$(dirname "$0")
-cd $BASEDIR
+cd $BASEDIR/../
 
 chmod +x dnsmasq/entrypoint.sh
 chmod +x nginx/entrypoint.sh
