@@ -1,8 +1,5 @@
 version: "3.2"
 services:
-  dnsmasq:
-    ports:
-      - "53:53/udp"
   nginx:
     ports:
       - "80:80"
