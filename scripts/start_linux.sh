@@ -10,6 +10,9 @@ fi
 BASEDIR=$(dirname "$0")
 cd $BASEDIR
 
+chmod +x dnsmasq/entrypoint.sh
+chmod +x nginx/entrypoint.sh
+
 # Create Network Consul
 [[ $(docker network ls | grep consul) ]] || docker network create consul
 docker-compose up -d
