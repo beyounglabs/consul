@@ -8,7 +8,8 @@ sed -i "s/CONSUL_HOST/$CONSUL_HOST/" /etc/dnsmasq.conf
 
 NGINX_HOST=`getent hosts consul_nginx | awk '{ print $1 }'`
 if [ "$WSL" == '1' ]; then
-    NGINX_HOST=`echo $ETH0_IP`
+    # NGINX_HOST=`echo $ETH0_IP`
+    NGINX_HOST=`echo 127.0.0.1`
 fi
 
 sed -i "s/NGINX_HOST/$NGINX_HOST/" /etc/dnsmasq.conf
