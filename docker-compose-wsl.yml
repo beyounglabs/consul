@@ -1,4 +1,4 @@
-version: '3.2'
+version: "3.2"
 services:
   dnsmasq:
     ports:
@@ -12,3 +12,6 @@ services:
   mysql:
     ports:
       - "3306:3306"
+  consul:
+    ports:
+      - "8500:8500"
