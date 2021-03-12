@@ -1,8 +1,8 @@
 version: "3.2"
 services:
   dnsmasq:
-    ports:
-      - "53:53/udp"
+    # ports:
+    #   - "53:53/udp"
     environment:
       WSL: "1"
       ETH0_IP: $ETH0_IP
